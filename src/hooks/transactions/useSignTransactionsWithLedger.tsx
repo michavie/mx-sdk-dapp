@@ -123,7 +123,7 @@ export function useSignTransactionsWithLedger({
             sessionId,
             status: TransactionBatchStatusesEnum.signed,
             transactions: Object.values(newSignedTransactions).map((tx) =>
-              parseTransactionAfterSigning(tx as Transaction, trueForLedger)
+              parseTransactionAfterSigning(tx as Transaction)
             )
           })
         );
