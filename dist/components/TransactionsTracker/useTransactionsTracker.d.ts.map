@@ -1,0 +1,1 @@
+{"version":3,"file":"useTransactionsTracker.d.ts","sourceRoot":"","sources":["../../../src/components/TransactionsTracker/useTransactionsTracker.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,2BAA2B,EAAE,MAAM,gBAAgB,CAAC;AAI7D,MAAM,WAAW,uBAAuB;IACtC,qBAAqB,CAAC,EAAE,2BAA2B,CAAC;CACrD;AAED,wBAAgB,sBAAsB,CAAC,KAAK,CAAC,EAAE,uBAAuB,QA6BrE;AAED,eAAe,sBAAsB,CAAC"}

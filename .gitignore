@@ -9,7 +9,7 @@ node_modules
 
 # builds
 build
-dist
+# dist
 .idea
 .idea/workspace.xml
 .rpt2_cache

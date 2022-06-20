@@ -1,0 +1,1 @@
+{"version":3,"file":"getScamAddressData.d.ts","sourceRoot":"","sources":["../../src/apiCalls/getScamAddressData.ts"],"names":[],"mappings":"AAIA,oBAAY,YAAY,GAAG;IACzB,QAAQ,CAAC,EAAE;QACT,IAAI,EAAE,MAAM,CAAC;QACb,IAAI,EAAE,MAAM,CAAC;KACd,CAAC;IACF,IAAI,EAAE,MAAM,CAAC;CACd,CAAC;AAEF,wBAAsB,kBAAkB,CAAC,eAAe,EAAE,MAAM,yBAa/D;AAED,eAAe,kBAAkB,CAAC"}

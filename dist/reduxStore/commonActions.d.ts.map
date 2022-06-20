@@ -1,0 +1,1 @@
+{"version":3,"file":"commonActions.d.ts","sourceRoot":"","sources":["../../src/reduxStore/commonActions.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,gBAAgB,EAAE,MAAM,aAAa,CAAC;AAE/C,MAAM,WAAW,sBAAsB;IACrC,OAAO,EAAE,MAAM,CAAC;IAChB,WAAW,EAAE,gBAAgB,CAAC;CAC/B;AAED,eAAO,MAAM,YAAY,kEAAyB,CAAC;AAEnD,eAAO,MAAM,WAAW,+IAGvB,CAAC"}

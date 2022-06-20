@@ -1,0 +1,1 @@
+{"version":3,"file":"apiProvider.d.ts","sourceRoot":"","sources":["../../src/providers/apiProvider.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,gBAAgB,EAAE,MAAM,sDAAsD,CAAC;AAGxF,OAAO,EAAE,WAAW,EAAE,MAAM,OAAO,CAAC;AAIpC,wBAAgB,qBAAqB,CAAC,aAAa,CAAC,EAAE,WAAW,oBAWhE;AAED,wBAAgB,cAAc,IAAI,gBAAgB,CAMjD"}

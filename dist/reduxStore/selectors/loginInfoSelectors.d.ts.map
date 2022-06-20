@@ -1,0 +1,1 @@
+{"version":3,"file":"loginInfoSelectors.d.ts","sourceRoot":"","sources":["../../../src/reduxStore/selectors/loginInfoSelectors.ts"],"names":[],"mappings":"AAIA,eAAO,MAAM,iBAAiB,UAAW,GAAG,QAAoB,CAAC;AAEjE,eAAO,MAAM,mBAAmB,gEAG/B,CAAC;AAEF,eAAO,MAAM,kBAAkB,oFAK9B,CAAC;AAEF,eAAO,MAAM,0BAA0B,gEAGtC,CAAC;AAEF,eAAO,MAAM,mBAAmB,gEAG/B,CAAC;AAEF,eAAO,MAAM,mBAAmB,gEAG/B,CAAC"}

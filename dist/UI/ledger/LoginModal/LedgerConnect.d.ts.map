@@ -1,0 +1,1 @@
+{"version":3,"file":"LedgerConnect.d.ts","sourceRoot":"","sources":["../../../../src/UI/ledger/LoginModal/LedgerConnect.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAG1B,QAAA,MAAM,aAAa;aAKR,MAAM,IAAI;WACZ,MAAM;yBACQ,MAAM,SAAS;iBAoCrC,CAAC;AAEF,eAAe,aAAa,CAAC"}

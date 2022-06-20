@@ -16,7 +16,8 @@
     "moduleResolution": "node",
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "emitDeclarationOnly": true
   },
   "include": ["./src"],
   "exclude": ["node_modules", "dist"]

@@ -5,6 +5,7 @@ const plugin = require('node-stdlib-browser/helpers/esbuild/plugin');
 const stdLibBrowser = require('node-stdlib-browser');
 const fs = require('fs');
 const alias = require('esbuild-plugin-alias');
+const { nodeExternalsPlugin } = require('esbuild-node-externals');
 
 const entryPoints = fs
   .readdirSync('src')
@@ -42,13 +43,6 @@ esbuild
       Buffer: 'Buffer',
       'process.env.NODE_ENV': `"production"`
     },
-    plugins: [
-      svgrPlugin(),
-      plugin(stdLibBrowser),
-      alias({
-        react: require.resolve('react'),
-        'react-dom': require.resolve('react-dom')
-      })
-    ]
+    plugins: [nodeExternalsPlugin(), svgrPlugin(), plugin(stdLibBrowser)]
   })
   .catch(() => process.exit(1));

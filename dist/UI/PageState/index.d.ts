@@ -1,0 +1,16 @@
+import React from 'react';
+export interface PageStateProps {
+    title?: React.ReactNode;
+    icon?: any;
+    iconClass?: string;
+    className?: string;
+    dataTestId?: string;
+    iconSize?: 'xs' | 'lg' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x';
+    iconBgClass?: string;
+    action?: React.ReactNode;
+    shouldRenderDefaultCss?: boolean;
+    description?: string | React.ReactNode;
+}
+export declare const PageState: ({ icon, title, action, iconClass, dataTestId, description, iconBgClass, iconSize, className, shouldRenderDefaultCss }: PageStateProps) => JSX.Element;
+export default PageState;
+//# sourceMappingURL=index.d.ts.map

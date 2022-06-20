@@ -1,0 +1,1 @@
+{"version":3,"file":"newTransaction.d.ts","sourceRoot":"","sources":["../../src/models/newTransaction.ts"],"names":[],"mappings":"AAAA,OAAO,EACL,WAAW,EAKZ,MAAM,sBAAsB,CAAC;AAM9B,OAAO,EAAE,kBAAkB,EAAE,MAAM,oBAAoB,CAAC;AAGxD,wBAAgB,cAAc,CAAC,cAAc,EAAE,kBAAkB,eA6BhE;AAED,eAAe,cAAc,CAAC"}

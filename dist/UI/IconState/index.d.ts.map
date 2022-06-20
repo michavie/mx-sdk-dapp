@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/UI/IconState/index.tsx"],"names":[],"mappings":";AAKA,MAAM,WAAW,cAAc;IAC7B,IAAI,EAAE,GAAG,CAAC;IACV,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,QAAQ,CAAC,EAAE,IAAI,GAAG,IAAI,GAAG,IAAI,CAAC;IAC9B,sBAAsB,CAAC,EAAE,OAAO,CAAC;CAClC;AAED,QAAA,MAAM,SAAS,0DAKZ,cAAc,gBAqBhB,CAAC;AAEF,eAAe,SAAS,CAAC"}

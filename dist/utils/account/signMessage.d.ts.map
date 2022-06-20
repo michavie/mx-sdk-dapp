@@ -1,0 +1,1 @@
+{"version":3,"file":"signMessage.d.ts","sourceRoot":"","sources":["../../../src/utils/account/signMessage.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAW,MAAM,sBAAsB,CAAC;AAIhE,UAAU,eAAe;IACvB,OAAO,EAAE,MAAM,CAAC;IAChB,aAAa,CAAC,EAAE,MAAM,CAAC;CACxB;AAED,wBAAsB,WAAW,CAAC,EAAE,OAAO,EAAE,aAAa,EAAE,EAAE,eAAe,4BAc5E;AAED,eAAe,WAAW,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"getTokenFromData.d.ts","sourceRoot":"","sources":["../../../src/utils/operations/getTokenFromData.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,OAAO,UAAU,gBAAgB,CACtC,IAAI,CAAC,EAAE,MAAM,GACZ;IAAE,OAAO,EAAE,MAAM,CAAC;IAAC,oBAAoB,EAAE,MAAM,CAAA;CAAE,CA8BnD"}
