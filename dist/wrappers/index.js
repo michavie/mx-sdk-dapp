@@ -2787,6 +2787,7 @@ import {
   REGISTER,
   createMigrate
 } from "redux-persist";
+import sessionStorage3 from "redux-persist/es/storage/session";
 
 // src/reduxStore/middlewares/loginSessionMiddleware.ts
 init_shim();
@@ -2832,6 +2833,7 @@ var loginSessionMiddleware_default = loginSessionMiddleware;
 init_shim();
 import { combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
+import sessionStorage2 from "redux-persist/es/storage/session";
 var reducers = {
   account: accountInfoSlice_default,
   networkConfig: networkConfigSlice_default,
@@ -2841,7 +2843,6 @@ var reducers = {
   transactionsInfo: transactionsInfoSlice_default
 };
 if (typeof window !== "undefined" && window.localStorage != null) {
-  const sessionStorage2 = __require("redux-persist/lib/storage/session").default;
   const transactionsInfoPersistConfig = {
     key: "dapp-core-transactionsInfo",
     version: 1,
@@ -2869,11 +2870,10 @@ var migrations = {
   }
 };
 if (typeof window !== "undefined" && (window == null ? void 0 : window.localStorage) != null) {
-  const storage3 = __require("redux-persist/lib/storage").default;
   const persistConfig = {
     key: "dapp-core-store",
     version: 2,
-    storage: storage3,
+    storage: sessionStorage3,
     whitelist: ["account", "loginInfo", "toasts", "modals", "networkConfig"],
     migrate: createMigrate(migrations, { debug: false })
   };
@@ -3912,7 +3912,7 @@ var AppInitializer_default = AppInitializer;
 // src/wrappers/DappProvider/index.tsx
 init_shim();
 import React8 from "react";
-import { Provider } from "react-redux";
+import { Provider } from "react-redux/";
 import { PersistGate } from "redux-persist/integration/react";
 
 // src/components/ProviderInitializer.tsx
@@ -4301,6 +4301,7 @@ var DappProvider = ({
   if (externalProvider2 != null) {
     setExternalProvider(externalProvider2);
   }
+  console.log({ store, state: store.getState() });
   return /* @__PURE__ */ React8.createElement(Provider, {
     context: DappCoreContext2,
     store

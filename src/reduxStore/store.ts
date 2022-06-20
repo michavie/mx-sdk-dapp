@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-
 import { Reducer } from 'redux';
 
 import {
@@ -13,6 +12,7 @@ import {
   REGISTER,
   createMigrate
 } from 'redux-persist';
+import sessionStorage from 'redux-persist/es/storage/session';
 
 import { defaultNetwork } from 'reduxStore/slices';
 import loginSessionMiddleware from './middlewares/loginSessionMiddleware';
@@ -32,11 +32,11 @@ const migrations = {
 //This allows for this library to be used on other platforms than web, like React Native
 //without this condition, redux-persist 6+ will throw an error if persist storage fails
 if (typeof window !== 'undefined' && window?.localStorage != null) {
-  const storage = require('redux-persist/lib/storage').default;
+  // const storage = require('redux-persist/lib/storage').default;
   const persistConfig = {
     key: 'dapp-core-store',
     version: 2,
-    storage,
+    storage: sessionStorage,
     whitelist: ['account', 'loginInfo', 'toasts', 'modals', 'networkConfig'],
     migrate: createMigrate(migrations, { debug: false })
   };

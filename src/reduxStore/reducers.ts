@@ -1,5 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
+import sessionStorage from 'redux-persist/es/storage/session';
 
 import account from './slices/accountInfoSlice';
 import loginInfo from './slices/loginInfoSlice';
@@ -20,7 +21,7 @@ const reducers = {
 if (typeof window !== 'undefined' && window.localStorage != null) {
   //This allows for this library to be used on other platforms than web, like React Native
   //without this condition, redux-persist 6+ will throw an error if persist storage fails
-  const sessionStorage = require('redux-persist/lib/storage/session').default;
+  // const sessionStorage = require('redux-persist/lib/storage/session').default;
 
   //#region custom reducers
   const transactionsInfoPersistConfig = {
