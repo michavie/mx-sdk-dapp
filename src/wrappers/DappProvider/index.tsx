@@ -4,14 +4,18 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { ProviderInitializer } from 'components/ProviderInitializer';
 
-import { DappCoreContext } from 'reduxStore/DappProviderContext';
-import { persistor, store } from 'reduxStore/store';
-import { IDappProvider } from 'types';
-import { CustomNetworkType, EnvironmentsEnum } from 'types';
+import { getDappCoreContext } from 'reduxStore/DappProviderContext';
+import { getPersistor, getStore } from 'reduxStore/store';
+import { CustomNetworkType, EnvironmentsEnum, IDappProvider } from 'types';
 import { AppInitializer } from 'wrappers/AppInitializer';
 
 import { CustomComponents, CustomComponentsType } from './CustomComponents';
 import { setExternalProvider } from 'providers/accountProvider';
+import { Storage } from 'redux-persist/es/types';
+import {
+  setPersistorLocalStorage,
+  setPersistorSessionStorage
+} from '../../reduxStore/storage';
 
 export interface DappProviderPropsType {
   children: React.ReactChildren | React.ReactElement;
@@ -20,6 +24,8 @@ export interface DappProviderPropsType {
   //we need the strings for autocomplete suggestions
   environment: 'testnet' | 'mainnet' | 'devnet' | EnvironmentsEnum;
   customComponents?: CustomComponentsType;
+  persistorLocalStorage?: Storage;
+  persistorSessionStorage?: Storage;
 }
 
 export const DappProvider = ({
@@ -27,8 +33,22 @@ export const DappProvider = ({
   customNetworkConfig = {},
   externalProvider,
   environment,
-  customComponents
+  customComponents,
+  persistorLocalStorage,
+  persistorSessionStorage
 }: DappProviderPropsType) => {
+  if (persistorLocalStorage) {
+    setPersistorLocalStorage(persistorLocalStorage);
+  }
+  if (persistorSessionStorage) {
+    setPersistorSessionStorage(persistorSessionStorage);
+  }
+
+  const context = getDappCoreContext();
+  if (!context) {
+    throw new Error('Missing DappCoreContext');
+  }
+
   if (!environment) {
     //throw if the user tries to initialize the app without a valid environment
     throw new Error('missing environment flag');
@@ -39,8 +59,8 @@ export const DappProvider = ({
   }
 
   return (
-    <Provider context={DappCoreContext} store={store}>
-      <PersistGate persistor={persistor} loading={null}>
+    <Provider context={context} store={getStore()}>
+      <PersistGate persistor={getPersistor()} loading={null}>
         <AppInitializer
           environment={environment as EnvironmentsEnum}
           customNetworkConfig={customNetworkConfig}

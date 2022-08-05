@@ -5,15 +5,25 @@ import {
   createStoreHook,
   ReactReduxContextValue
 } from 'react-redux';
-import { store, subscription } from './store';
+import { getStore, getSubscription } from './store';
 
 const defaultContextValue: ReactReduxContextValue = {
-  store,
-  subscription
+  store: getStore(),
+  subscription: getSubscription()
 };
 
-export const DappCoreContext = React.createContext(defaultContextValue);
+let DappCoreContext: React.Context<ReactReduxContextValue> | null;
 
-export const useStore = createStoreHook(DappCoreContext);
-export const useDispatch = createDispatchHook(DappCoreContext);
-export const useSelector = createSelectorHook(DappCoreContext);
+export const getDappCoreContext = () => {
+  if (DappCoreContext) {
+    return DappCoreContext;
+  }
+
+  DappCoreContext = React.createContext(defaultContextValue);
+
+  return DappCoreContext;
+};
+
+export const useStore = createStoreHook(getDappCoreContext());
+export const useDispatch = createDispatchHook(getDappCoreContext());
+export const useSelector = createSelectorHook(getDappCoreContext());
