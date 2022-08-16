@@ -1,6 +1,15 @@
 //this will make sure that when importing store in the app,
 // in non-browser envs there will be no warnings/errors caused by redux-persist
 const isWebEnvironment = typeof sessionStorage !== 'undefined';
+
+export const getReducers = () => {
+  console.log('Get reducers');
+
+  return isWebEnvironment
+    ? require('./persistedRootReducer').default
+    : require('./rootReducer').default;
+};
+
 export const reducers = isWebEnvironment
   ? require('./persistedRootReducer').default
   : require('./rootReducer').default;

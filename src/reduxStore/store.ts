@@ -4,15 +4,15 @@ import { createSubscription } from 'react-redux/es/utils/Subscription';
 import { setAccount, setAccountNonce } from 'reduxStore/slices';
 import { loginSessionMiddleware } from './middlewares/loginSessionMiddleware';
 import {
+  getReducers,
   persistIgnoredActions,
-  persistStore,
-  reducers
+  persistStore
 } from './webPersistConfig';
 import rootReducer from './reducers';
 import { CurriedGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 
 const getStoreConfig = () => ({
-  reducer: reducers,
+  reducer: getReducers(),
   middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware<any>) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -36,10 +36,14 @@ const fakeStore = configureStore(getStoreConfig());
 let store: typeof fakeStore | null = null;
 
 export const getStore = () => {
+  console.log('getStore');
+
   if (store) {
+    console.log('store from cache');
     return store;
   }
 
+  console.log('creating new store');
   store = configureStore(getStoreConfig());
 
   return store;
@@ -47,7 +51,35 @@ export const getStore = () => {
 
 export const getSubscription = () => createSubscription(getStore());
 
-export const getPersistor = () => persistStore(getStore());
+export const persistor = persistStore(getStore());
+
+export const resetStore = async () => {
+  console.log('resetStore');
+
+  await persistor.purge();
+  // const { reducers } = require('./webPersistConfig');
+
+  // console.log(reducers);
+
+  // store?.replaceReducer(reducers);
+  store = null;
+
+  await persistor.flush();
+
+  console.log('Flush persitor');
+};
+
+export const reInitializeStore = () => {
+  const { reducers } = require('./webPersistConfig');
+
+  console.log(reducers);
+
+  store?.replaceReducer(reducers);
+
+  // store = configureStore(getStoreConfig());
+
+  return store;
+};
 
 const storeType = configureStore({ reducer: rootReducer });
 
