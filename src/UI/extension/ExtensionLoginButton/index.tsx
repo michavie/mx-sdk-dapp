@@ -2,24 +2,24 @@ import React, { ReactNode } from 'react';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import { useExtensionLogin } from 'hooks/login/useExtensionLogin';
 import { LoginButton } from 'UI/LoginButton/LoginButton';
+import {
+  useExtensionLogin,
+  UseExtensionLoginPropsType
+} from '../../../hooks/login/useExtensionLogin';
 import { WithClassnameType } from '../../types';
 import styles from './extensionLoginButtonStyles.scss';
 
-export interface ExtensionLoginButtonPropsType extends WithClassnameType {
-  token?: string;
+export interface ExtensionLoginButtonPropsType
+  extends UseExtensionLoginPropsType,
+    WithClassnameType {
   children?: ReactNode;
   buttonClassName?: string;
-  callbackRoute?: string;
   loginButtonText?: string;
-  onLoginRedirect?: (callbackRoute: string) => void;
   disabled?: boolean;
 }
 
-export const ExtensionLoginButton: (
-  props: ExtensionLoginButtonPropsType
-) => JSX.Element = ({
+export const ExtensionLoginButton = ({
   token,
   className = 'dapp-extension-login',
   children,
@@ -27,12 +27,14 @@ export const ExtensionLoginButton: (
   buttonClassName,
   loginButtonText = 'Maiar DeFi Wallet',
   onLoginRedirect,
+  onSignatureReceived,
   disabled
-}) => {
+}: ExtensionLoginButtonPropsType) => {
   const [onInitiateLogin] = useExtensionLogin({
     callbackRoute,
     token,
-    onLoginRedirect
+    onLoginRedirect,
+    onSignatureReceived
   });
 
   const isFirefox = navigator.userAgent.indexOf('Firefox') != -1;

@@ -9,9 +9,22 @@ import { InitiateLoginFunctionType, LoginHookGenericStateType } from 'types';
 import { LoginMethodsEnum } from 'types/enums.types';
 import { getIsLoggedIn } from 'utils/getIsLoggedIn';
 import { optionalRedirect } from 'utils/internal';
-interface UseExtensionLoginPropsType {
+export interface UseExtensionLoginPropsType {
   callbackRoute?: string;
   token?: string;
+  /**
+   * use `onSignatureReceived` to perform authentication before login is saved to store
+   * @example
+   * await onSignatureReceived({address, signature, loginToken})
+   */
+  onSignatureReceived?: (props: {
+    address: string;
+    signature: string;
+    loginToken: string;
+  }) => Promise<any>;
+  /**
+   * use `onLoginRedirect` to perform a custom navigation to `callbackRoute`
+   */
   onLoginRedirect?: (callbackRoute: string) => void;
 }
 
@@ -23,6 +36,7 @@ export type UseExtensionLoginReturnType = [
 export const useExtensionLogin = ({
   callbackRoute,
   token,
+  onSignatureReceived,
   onLoginRedirect
 }: UseExtensionLoginPropsType): UseExtensionLoginReturnType => {
   const [error, setError] = useState('');
@@ -69,6 +83,13 @@ export const useExtensionLogin = ({
       }
 
       if (signature) {
+        if (onSignatureReceived) {
+          await onSignatureReceived({
+            address,
+            signature,
+            loginToken: String(token)
+          });
+        }
         dispatch(
           setTokenLogin({
             loginToken: String(token),
