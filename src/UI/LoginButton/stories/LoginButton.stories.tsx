@@ -18,8 +18,8 @@ const Template: ComponentStory<typeof LoginButton> = (args) => (
   <LoginButton {...args} />
 );
 
-export const Primary = Template.bind({});
+export const Text = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
+Text.args = {
   text: 'Login basic'
 };
