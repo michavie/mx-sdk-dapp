@@ -40,7 +40,11 @@ export const LoginButton = ({
 
   return (
     <button disabled={disabled} className={classes.wrapper} onClick={onLogin}>
-      {children || <span className={classes.loginText}>{text}</span>}
+      {children || (
+        <span className={classes.loginText}>
+          {text}11{globalStyles.btn}
+        </span>
+      )}
     </button>
   );
 };

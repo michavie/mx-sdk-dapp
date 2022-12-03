@@ -20,13 +20,40 @@ module.exports = {
     config.module.rules.push({
       test: /\.scss$/,
       use: [
-        'style-loader', 
-        'css-loader',
-        {
-          loader: "sass-loader",
-        }, 
+          'style-loader',
+          {
+              loader: 'css-loader',
+              options: {
+                  importLoaders: 1,
+                  modules: {
+                      // mode: 'local',
+                      // localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                      // localIdentName: '[sha1:hash:hex:4]',
+                      // context: path.resolve(__dirname, 'src'),
+                      // hashPrefix: 'my-custom-hash',
+                  },
+              },
+          },
+          'sass-loader'
       ],
     });
+
+    // config.module.rules.push({
+    //   test: /\.scss$/,
+    //   use: ['style-loader', 'css-loader', 'sass-loader'],
+    //   include: path.resolve(__dirname, '../'),
+    // });
+
+    // config.module.rules.push({
+    //   test: /\.scss$/,
+    //   use: [
+    //     'style-loader', 
+    //     'css-loader',
+    //     {
+    //       loader: "sass-loader",
+    //     }, 
+    //   ],
+    // });
 
     return config;
   },
