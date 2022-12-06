@@ -51,10 +51,11 @@ export function ProviderInitializer() {
   const ledgerAccount = useSelector(ledgerAccountSelector);
   const ledgerLogin = useSelector(ledgerLoginSelector);
   const isLoggedIn = useSelector(isLoggedInSelector);
-  const [ledgerData, setLedgerData] = useState<{
-    version: string;
-    dataEnabled: boolean;
-  }>();
+  const [ledgerData, setLedgerData] =
+    useState<{
+      version: string;
+      dataEnabled: boolean;
+    }>();
   const tokenLogin = useSelector(tokenLoginSelector);
   const nativeAuthConfig = tokenLogin?.nativeAuthConfig;
   const loginService = useLoginService(
@@ -199,7 +200,10 @@ export function ProviderInitializer() {
     const { pathname } = window.location;
     const newSearch = newUrlParams ? `?${newUrlParams}` : '';
     const fullPath = pathname ? `${pathname}${newSearch}` : './';
-    window.history.replaceState({}, document?.title, fullPath);
+
+    setTimeout(() => {
+      window.history.replaceState({}, document?.title, fullPath);
+    });
   }
 
   async function getInitializedHwWalletProvider() {
