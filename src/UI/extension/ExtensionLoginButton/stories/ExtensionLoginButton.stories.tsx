@@ -2,11 +2,10 @@ import React from 'react';
 import { expect, jest } from '@storybook/jest';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { within, fireEvent } from '@storybook/testing-library';
-import { LoginButton as LoginBtn } from './../LoginButton';
+import { ExtensionLoginButton as LoginBtn } from '../index';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'UI/LoginButton',
+  title: 'UI/ExtensionLoginButton',
   component: LoginBtn,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
@@ -19,23 +18,21 @@ const Template: ComponentStory<typeof LoginBtn> = (args) => {
   return <LoginBtn {...args} />;
 };
 
-export const LoginButton = Template.bind({});
+export const ExtensionLoginButton = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
-const buttonDataTestId = 'loginButton';
-
-LoginButton.args = {
-  text: 'Login basic',
-  'data-testid': buttonDataTestId,
-  onLogin: jest.fn()
+ExtensionLoginButton.args = {
+  loginButtonText: 'Maiar DeFi Wallet',
+  onLoginRedirect: jest.fn(),
+  'data-testid': 'extension-login-button'
 };
 
-LoginButton.parameters = { ...Template.parameters };
-LoginButton.play = async ({ canvasElement, args }) => {
+ExtensionLoginButton.parameters = { ...Template.parameters };
+ExtensionLoginButton.play = async ({ canvasElement, args }) => {
   const canvas = within(canvasElement);
   const loginButton = await canvas.findByTestId(String(args['data-testid']));
-  expect(args.onLogin).toHaveBeenCalledTimes(0);
+  expect(args.onLoginRedirect).toHaveBeenCalledTimes(0);
 
   fireEvent.click(loginButton);
-  expect(args.onLogin).toHaveBeenCalledTimes(1);
+  expect(args.onLoginRedirect).toHaveBeenCalledTimes(1);
 };

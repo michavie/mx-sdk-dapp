@@ -2,11 +2,27 @@ import React, { ReactNode } from 'react';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import { useExtensionLogin } from 'hooks/login/useExtensionLogin';
 import { LoginButton } from 'UI/LoginButton/LoginButton';
 import { OnProviderLoginType } from '../../../types';
 import { WithClassnameType } from '../../types';
+import { getIsExtensionAvailable } from '../helpers';
 import styles from './extensionLoginButton.styles.scss';
+
+const useExtensionLogin = (props: any): any => {
+  if (!props) {
+    return;
+  }
+
+  return [
+    () => true,
+    {
+      loginFailed: false,
+      error: '',
+      isLoading: false,
+      isLoggedIn: false
+    }
+  ];
+};
 
 export interface ExtensionLoginButtonPropsType
   extends WithClassnameType,
@@ -16,6 +32,8 @@ export interface ExtensionLoginButtonPropsType
   loginButtonText?: string;
   disabled?: boolean;
 }
+
+const isExtensionAvailable = getIsExtensionAvailable();
 
 export const ExtensionLoginButton: (
   props: ExtensionLoginButtonPropsType
@@ -28,7 +46,8 @@ export const ExtensionLoginButton: (
   nativeAuth,
   loginButtonText = 'Maiar DeFi Wallet',
   onLoginRedirect,
-  disabled
+  disabled,
+  'data-testid': dataTestId = 'extension-login-button'
 }) => {
   const [onInitiateLogin] = useExtensionLogin({
     callbackRoute,
@@ -52,7 +71,9 @@ export const ExtensionLoginButton: (
     onInitiateLogin();
   };
 
-  return !window.elrondWallet ? (
+  console.log({ isExtensionAvailable });
+
+  return !isExtensionAvailable ? (
     <a
       rel='noreferrer'
       href={
@@ -83,6 +104,7 @@ export const ExtensionLoginButton: (
       btnClassName={buttonClassName}
       text={loginButtonText}
       disabled={disabled}
+      data-testid={dataTestId}
     >
       {children}
     </LoginButton>
