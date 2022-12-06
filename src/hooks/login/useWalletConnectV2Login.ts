@@ -1,9 +1,8 @@
 import { useRef, useState } from 'react';
-import {
-  PairingTypes,
-  SessionEventTypes,
-  WalletConnectV2Provider
-} from '@elrondnetwork/erdjs-wallet-connect-provider';
+import { PairingTypes } from '@elrondnetwork/erdjs-wallet-connect-provider';
+import { SessionEventTypes } from '@elrondnetwork/erdjs-wallet-connect-provider';
+import { WalletConnectV2Provider } from '@elrondnetwork/erdjs-wallet-connect-provider/out/walletConnectV2Provider';
+
 import { useUpdateEffect } from 'hooks/useUpdateEffect';
 import {
   getAccountProvider,

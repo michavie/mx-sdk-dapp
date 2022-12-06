@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { WalletConnectProvider } from '@elrondnetwork/erdjs-wallet-connect-provider';
-
+import { WalletConnectProvider } from '@elrondnetwork/erdjs-wallet-connect-provider/out/walletConnectProvider';
 import { useGetAccountProvider } from 'hooks/account/useGetAccountProvider';
 import { useUpdateEffect } from 'hooks/useUpdateEffect';
 import { setAccountProvider } from 'providers/accountProvider';

@@ -2,27 +2,12 @@ import React, { ReactNode } from 'react';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
+import { useExtensionLogin } from 'hooks/login/useExtensionLogin';
 import { LoginButton } from 'UI/LoginButton/LoginButton';
 import { OnProviderLoginType } from '../../../types';
 import { WithClassnameType } from '../../types';
 import { getIsExtensionAvailable } from '../helpers';
 import styles from './extensionLoginButton.styles.scss';
-
-const useExtensionLogin = (props: any): any => {
-  if (!props) {
-    return;
-  }
-
-  return [
-    () => true,
-    {
-      loginFailed: false,
-      error: '',
-      isLoading: false,
-      isLoggedIn: false
-    }
-  ];
-};
 
 export interface ExtensionLoginButtonPropsType
   extends WithClassnameType,
@@ -47,7 +32,7 @@ export const ExtensionLoginButton: (
   loginButtonText = 'Maiar DeFi Wallet',
   onLoginRedirect,
   disabled,
-  'data-testid': dataTestId = 'extension-login-button'
+  'data-testid': dataTestId = 'extensionLoginButton'
 }) => {
   const [onInitiateLogin] = useExtensionLogin({
     callbackRoute,
@@ -70,8 +55,6 @@ export const ExtensionLoginButton: (
   const handleLogin = () => {
     onInitiateLogin();
   };
-
-  console.log({ isExtensionAvailable });
 
   return !isExtensionAvailable ? (
     <a
