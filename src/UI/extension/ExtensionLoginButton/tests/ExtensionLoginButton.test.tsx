@@ -36,7 +36,7 @@ describe('ExtensionLoginButton tests', () => {
         </>
       </DappProvider>
     );
-    const button = methods.getByTestId('extensionLoginButton');
+    const button = await methods.findByTestId('extensionLoginButton');
     expect(button.textContent).toBe('Maiar DeFi Wallet');
     fireEvent.click(button);
     const check = await methods.findByTestId('checkIsLoggedIn');

@@ -8,6 +8,7 @@ module.exports = {
     '^.+\\.scss$': 'jest-scss-transform',
     '.+\\.(svg)$': 'jest-scss-transform'
   },
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
       'identity-obj-proxy'
@@ -15,6 +16,5 @@ module.exports = {
   moduleNameMapper: {
     uint8arrays: '<rootDir>/node_modules/uint8arrays/cjs/src',
     multiformats: '<rootDir>/node_modules/multiformats/cjs/src'
-  },
-  setupFiles: ['<rootDir>/src/setupTests.js']
+  }
 };
