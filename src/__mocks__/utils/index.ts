@@ -1,1 +1,1 @@
-export * from './renderWithDappProvider';
+export * from './renderWithProvider';
