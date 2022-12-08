@@ -8,7 +8,7 @@ module.exports = {
     '^.+\\.scss$': 'jest-scss-transform',
     '.+\\.(svg)$': 'jest-scss-transform'
   },
-  setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
       'identity-obj-proxy'

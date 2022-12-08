@@ -24,19 +24,17 @@ jest.mock('@elrondnetwork/erdjs-extension-provider', () => {
 
 const CheckLogin = () => {
   const { isLoggedIn } = useGetLoginInfo();
-  return (
-    <span data-testid='checkIsLoggedIn'>
-      {!isLoggedIn && <ExtensionLoginButton />}
-      {String(isLoggedIn)}
-    </span>
-  );
+  return <span data-testid='checkIsLoggedIn'>{String(isLoggedIn)}</span>;
 };
 
 describe('ExtensionLoginButton tests', () => {
   it('should display short time', async () => {
     const methods = render(
       <DappProvider environment={EnvironmentsEnum.devnet}>
-        <CheckLogin />
+        <>
+          <ExtensionLoginButton />
+          <CheckLogin />
+        </>
       </DappProvider>
     );
 
