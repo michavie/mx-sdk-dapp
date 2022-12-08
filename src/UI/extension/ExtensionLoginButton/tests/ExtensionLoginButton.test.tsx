@@ -1,7 +1,6 @@
 import React from 'react';
 import { expect } from '@storybook/jest';
-import { fireEvent } from '@storybook/testing-library';
-import { waitFor } from '@testing-library/react';
+import { waitFor, fireEvent } from '@testing-library/react';
 import { renderWithProvider } from '__mocks__/utils';
 import { isLoggedInSelector } from 'reduxStore/selectors';
 import { store } from 'reduxStore/store';
@@ -16,7 +15,7 @@ jest.mock('@elrondnetwork/erdjs-extension-provider', () => {
 });
 
 describe('ExtensionLoginButton tests', () => {
-  it('should display short time', async () => {
+  it('should perform simple login', async () => {
     const methods = renderWithProvider({
       children: <ExtensionLoginButton />
     });
