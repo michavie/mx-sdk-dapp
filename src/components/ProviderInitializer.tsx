@@ -242,6 +242,7 @@ export function ProviderInitializer() {
     try {
       const address = await getAddress();
       const provider = ExtensionProvider.getInstance().setAddress(address);
+
       const success = await provider.init();
 
       if (success) {

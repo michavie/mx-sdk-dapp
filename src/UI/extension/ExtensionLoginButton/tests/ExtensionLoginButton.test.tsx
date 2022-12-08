@@ -1,9 +1,9 @@
 import React from 'react';
 import { expect } from '@storybook/jest';
 import { fireEvent } from '@storybook/testing-library';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { useGetLoginInfo } from 'hooks/account';
-import { EnvironmentsEnum, LoginMethodsEnum } from 'types';
+import { EnvironmentsEnum } from 'types';
 import { DappProvider } from 'wrappers/DappProvider';
 import { ExtensionLoginButton } from '../';
 
@@ -14,32 +14,41 @@ jest.mock('../../helpers/getIsExtensionAvailable', () => {
   };
 });
 
-jest.mock('providers/utils', () => {
+jest.mock('@elrondnetwork/erdjs-extension-provider', () => {
+  const { ExtensionProvider } = require('./mockExtensionProvider');
   return {
     __esModule: true,
-    getProviderType: () => LoginMethodsEnum.none
+    ExtensionProvider
   };
 });
 
 const CheckLogin = () => {
   const { isLoggedIn } = useGetLoginInfo();
-  return <span data-testid='checkIsLoggedIn'>{String(isLoggedIn)}</span>;
+  return (
+    <span data-testid='checkIsLoggedIn'>
+      {!isLoggedIn && <ExtensionLoginButton />}
+      {String(isLoggedIn)}
+    </span>
+  );
 };
 
 describe('ExtensionLoginButton tests', () => {
   it('should display short time', async () => {
     const methods = render(
       <DappProvider environment={EnvironmentsEnum.devnet}>
-        <>
-          <ExtensionLoginButton />
-          <CheckLogin />
-        </>
+        <CheckLogin />
       </DappProvider>
     );
+
     const button = await methods.findByTestId('extensionLoginButton');
+
     expect(button.textContent).toBe('Maiar DeFi Wallet');
+
     fireEvent.click(button);
-    const check = await methods.findByTestId('checkIsLoggedIn');
-    expect(check.textContent).toBe(1);
+
+    await waitFor(() => {
+      const isLoggedin = methods.getByTestId('checkIsLoggedIn');
+      expect(isLoggedin.textContent).toBe('true');
+    });
   });
 });
