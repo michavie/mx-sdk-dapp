@@ -30,6 +30,13 @@ jest.mock('./utils/network/getEgldLabel', () => {
   };
 });
 
+jest.mock('./UI/extension/helpers/getIsExtensionAvailable', () => {
+  return {
+    __esModule: true,
+    getIsExtensionAvailable: () => true
+  };
+});
+
 jest.mock('./hooks/useGetNetworkConfig', () => {
   return {
     __esModule: true,

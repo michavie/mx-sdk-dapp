@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { render, RenderResult } from '@testing-library/react';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { EnvironmentsEnum } from 'types';
+
 import { DappProvider } from 'wrappers/DappProvider';
 
 interface RenderType extends RenderResult {

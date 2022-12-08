@@ -3,15 +3,9 @@ import { expect } from '@storybook/jest';
 import { fireEvent } from '@storybook/testing-library';
 import { waitFor } from '@testing-library/react';
 import { renderWithProvider } from '__mocks__/utils';
-import { useGetLoginInfo } from 'hooks/account';
+import { isLoggedInSelector } from 'reduxStore/selectors';
+import { store } from 'reduxStore/store';
 import { ExtensionLoginButton } from '../';
-
-jest.mock('../../helpers/getIsExtensionAvailable', () => {
-  return {
-    __esModule: true,
-    getIsExtensionAvailable: () => true
-  };
-});
 
 jest.mock('@elrondnetwork/erdjs-extension-provider', () => {
   const { ExtensionProvider } = require('./mockExtensionProvider');
@@ -21,31 +15,19 @@ jest.mock('@elrondnetwork/erdjs-extension-provider', () => {
   };
 });
 
-const CheckLogin = () => {
-  const { isLoggedIn } = useGetLoginInfo();
-  return <span data-testid='checkIsLoggedIn'>{String(isLoggedIn)}</span>;
-};
-
 describe('ExtensionLoginButton tests', () => {
   it('should display short time', async () => {
     const methods = renderWithProvider({
-      children: (
-        <>
-          <ExtensionLoginButton />
-          <CheckLogin />
-        </>
-      )
+      children: <ExtensionLoginButton />
     });
 
-    const button = await methods.findByTestId('extensionLoginButton');
+    const loginButton = await methods.findByTestId('extensionLoginButton');
 
-    expect(button.textContent).toBe('Maiar DeFi Wallet');
-
-    fireEvent.click(button);
+    fireEvent.click(loginButton);
 
     await waitFor(() => {
-      const isLoggedin = methods.getByTestId('checkIsLoggedIn');
-      expect(isLoggedin.textContent).toBe('true');
+      const isLoggedIn = isLoggedInSelector(store.getState());
+      expect(isLoggedIn).toBe(true);
     });
   });
 });
