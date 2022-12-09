@@ -8,7 +8,7 @@ import { ExtensionLoginButton } from '../';
 import { checkIsLoggedInStore } from './helpers';
 
 jest.mock('@elrondnetwork/erdjs-extension-provider', () => {
-  const { ExtensionProvider } = require('./helpers');
+  const { ExtensionProvider } = require('./helpers/mockExtensionProvider');
   return {
     __esModule: true,
     ExtensionProvider
@@ -18,10 +18,9 @@ jest.mock('@elrondnetwork/erdjs-extension-provider', () => {
 const CALLBACK_ROUTE = '/dashboard';
 
 describe('ExtensionLoginButton tests', () => {
-  beforeEach(mockWindowLocation);
-
-  afterEach(() => {
+  beforeEach(() => {
     store.dispatch(logoutAction());
+    mockWindowLocation();
   });
 
   it('should perform simple login and redirect', async () => {
