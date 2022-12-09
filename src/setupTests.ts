@@ -67,6 +67,10 @@ jest.mock('react-redux/es/utils/Subscription', () => {
   };
 });
 
+/**************
+ * window
+ ***************/
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation((query) => ({
@@ -80,3 +84,21 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: jest.fn()
   }))
 });
+
+const location = window.location;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+delete window.location;
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+window.location = Object.defineProperties(
+  {},
+  {
+    ...Object.getOwnPropertyDescriptors(location),
+    assign: {
+      configurable: true,
+      value: jest.fn()
+    }
+  }
+);

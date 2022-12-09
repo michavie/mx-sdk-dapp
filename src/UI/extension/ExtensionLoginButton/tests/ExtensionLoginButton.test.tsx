@@ -14,10 +14,13 @@ jest.mock('@elrondnetwork/erdjs-extension-provider', () => {
   };
 });
 
+const CALLBACK_ROUTE = '/dashboard';
+
 describe('ExtensionLoginButton tests', () => {
   it('should perform simple login', async () => {
     const methods = renderWithProvider({
-      children: <ExtensionLoginButton />
+      route: '/unlock',
+      children: <ExtensionLoginButton callbackRoute={CALLBACK_ROUTE} />
     });
 
     const loginButton = await methods.findByTestId('extensionLoginButton');
@@ -27,6 +30,10 @@ describe('ExtensionLoginButton tests', () => {
     await waitFor(() => {
       const isLoggedIn = isLoggedInSelector(store.getState());
       expect(isLoggedIn).toBe(true);
+    });
+
+    await waitFor(() => {
+      expect(window.location.assign).toHaveBeenCalledWith(CALLBACK_ROUTE);
     });
   });
 });
