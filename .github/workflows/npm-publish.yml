@@ -37,11 +37,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          minor-wording: 'minor'
-          major-wording: 'major'
-          patch-wording: 'patch'
-          rc-wording: 'rc'
+          minor-wording: 'MINOR'
+          major-wording: 'MAJOR'
+          patch-wording: 'PATCH'
+          rc-wording: 'RC-RELEASE'
           skip-tag: 'true'
+          tag-prefix: 'v'
 
       # - name: Run tests
       #   run: yarn test
