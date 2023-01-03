@@ -1,10 +1,6 @@
 name: Publish dapp-core
 
 on:
-  push:
-    branches: [ag-npm-publish]
-  repository_dispatch:
-    types: deploy-production
   workflow_dispatch:
 
 permissions:
@@ -23,34 +19,35 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
 
+      - name: Setup yarn
+        run: npm install -g yarn
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run tests
+        run: yarn test
+
+      - name: Build project
+        run: yarn build
+
+      - name: 'Automated Version Bump'
+        uses: 'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          minor-wording: 'MINOR'
+          major-wording: 'MAJOR'
+          patch-wording: 'PATCH'
+          rc-wording: 'RC-RELEASE'
+          tag-prefix: 'v'
+
       - name: Changelog
         run: node changelog.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Setup yarn
-      #   run: npm install -g yarn
 
-      # - name: Install dependencies
-      #   run: yarn install
-
-      # - name: Build project
-      #   run: yarn build
-
-      # - name: 'Automated Version Bump'
-      #   uses: 'phips28/gh-action-bump-version@master'
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     minor-wording: 'MINOR'
-      #     major-wording: 'MAJOR'
-      #     patch-wording: 'PATCH'
-      #     rc-wording: 'RC-RELEASE'
-      #     tag-prefix: 'v'
-
-      # - name: Run tests
-      #   run: yarn test
-
-      # - name: Publish to npmjs
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      #   run: cd dist && npm publish
+      - name: Publish to npmjs
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: cd dist && npm publish
