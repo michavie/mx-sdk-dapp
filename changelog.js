@@ -24,6 +24,7 @@ fs.readFile(file, 'utf8', function (err, data) {
   `;
 
   console.log('replacement is: \n\n' + replacement);
+  console.log(process.env.GITHUB_TOKEN ? true : false);
 
   var result = data.replace('## [Unreleased]', replacement);
 

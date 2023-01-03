@@ -25,6 +25,8 @@ jobs:
 
       - name: Changelog
         run: node changelog.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - name: Setup yarn
       #   run: npm install -g yarn
 
