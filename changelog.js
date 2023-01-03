@@ -1,3 +1,5 @@
+const { spawn } = require('child_process');
+
 var packageJson = require('./package.json');
 var fs = require('fs');
 
