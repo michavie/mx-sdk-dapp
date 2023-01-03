@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [[3.0.4](https://github.com/ElrondNetwork/dapp-core/pull/527)] - 2023-01-03
+  
 - [test unreleased](https://github.com/ElrondNetwork/dapp-core/pull/526)
 ## [[2.2.4](https://github.com/ElrondNetwork/dapp-core/pull/525)] - 2022-12-28
 - [Fixed extension plain login](https://github.com/ElrondNetwork/dapp-core/pull/523)
