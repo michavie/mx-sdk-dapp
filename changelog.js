@@ -37,18 +37,50 @@ fs.readFile(file, 'utf8', function (err, data) {
 });
 
 const pushChanges = async () => {
-  console.log('head ref is: ', process.env.GITHUB_HEAD_REF);
-  // await runInWorkspace('git', [
-  //   'config',
-  //   'user.name',
-  //   `"${process.env.GITHUB_USER || 'Automated Changelog'}"`
-  // ]);
-  // await runInWorkspace('git', [
-  //   'config',
-  //   'user.email',
-  //   `"${
-  //     process.env.GITHUB_EMAIL ||
-  //     'gh-action-changelog-edit@users.noreply.github.com'
-  //   }"`
-  // ]);
+  await runInWorkspace('git', [
+    'config',
+    'user.name',
+    `"${process.env.GITHUB_USER || 'Automated Changelog'}"`
+  ]);
+  await runInWorkspace('git', [
+    'config',
+    'user.email',
+    `"${
+      process.env.GITHUB_EMAIL ||
+      'gh-action-changelog-edit@users.noreply.github.com'
+    }"`
+  ]);
+
+  const remoteRepo = `https://${process.env.GITHUB_ACTOR}:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
+  await runInWorkspace('git', ['commit', '-a', '-m', 'update changelog']);
+  await runInWorkspace('git', ['push', remoteRepo, '--follow-tags']);
+  await runInWorkspace('git', ['push', remoteRepo, '--tags']);
 };
+
+function runInWorkspace(command, args) {
+  return new Promise((resolve, reject) => {
+    console.log('runInWorkspace | command:', command, 'args:', args);
+    const child = spawn(command, args, { cwd: workspace });
+    let isDone = false;
+    const errorMessages = [];
+    child.on('error', (error) => {
+      if (!isDone) {
+        isDone = true;
+        reject(error);
+      }
+    });
+    child.stderr.on('data', (chunk) => errorMessages.push(chunk));
+    child.on('exit', (code) => {
+      if (!isDone) {
+        if (code === 0) {
+          resolve();
+        } else {
+          reject(
+            `${errorMessages.join('')}${EOL}${command} exited with code ${code}`
+          );
+        }
+      }
+    });
+  });
+  //return execa(command, args, { cwd: workspace });
+}
