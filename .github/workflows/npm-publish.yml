@@ -23,8 +23,8 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
 
-        - name: Changelog
-          run: node changelog.js
+      - name: Changelog
+        run: node changelog.js
       # - name: Setup yarn
       #   run: npm install -g yarn
 
