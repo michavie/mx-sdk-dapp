@@ -23,6 +23,8 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
 
+        - name: Changelog
+          run: node changelog.js
       # - name: Setup yarn
       #   run: npm install -g yarn
 
@@ -41,18 +43,12 @@ jobs:
       #     major-wording: 'MAJOR'
       #     patch-wording: 'PATCH'
       #     rc-wording: 'RC-RELEASE'
-      #     skip-tag: 'true'
       #     tag-prefix: 'v'
-
-      - name: Update changelog
-        uses: 'thomaseizinger/keep-a-changelog-new-release@v1'
-        with:
-          version: v0.6.0 # You probably want to have this dynamic :)
-
 
       # - name: Run tests
       #   run: yarn test
-#       - name: Publish to npmjs
-#         env:
-#           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-#         run: npm run publish-patch-package
+
+      # - name: Publish to npmjs
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      #   run: cd dist && npm publish
