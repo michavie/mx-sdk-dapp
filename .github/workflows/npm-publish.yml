@@ -41,6 +41,7 @@ jobs:
           major-wording: 'major'
           patch-wording: 'patch'
           rc-wording: 'rc'
+          skip-tag: 'true'
 
       # - name: Run tests
       #   run: yarn test
