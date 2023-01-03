@@ -33,4 +33,22 @@ fs.readFile(file, 'utf8', function (err, data) {
       return console.log(err);
     }
   });
+  pushChanges();
 });
+
+const pushChanges = async () => {
+  console.log('head ref is: ', process.env.GITHUB_HEAD_REF);
+  // await runInWorkspace('git', [
+  //   'config',
+  //   'user.name',
+  //   `"${process.env.GITHUB_USER || 'Automated Changelog'}"`
+  // ]);
+  // await runInWorkspace('git', [
+  //   'config',
+  //   'user.email',
+  //   `"${
+  //     process.env.GITHUB_EMAIL ||
+  //     'gh-action-changelog-edit@users.noreply.github.com'
+  //   }"`
+  // ]);
+};
