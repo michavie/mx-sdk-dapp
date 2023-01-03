@@ -23,6 +23,8 @@ fs.readFile(file, 'utf8', function (err, data) {
   })] - ${date.toISOString().split('T')[0]}
   `;
 
+  console.log('replacement is: \n\n' + replacement);
+
   var result = data.replace('## [Unreleased]', replacement);
 
   fs.writeFileSync(file, result, 'utf8', function (err) {
