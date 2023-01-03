@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 
 var packageJson = require('./package.json');
 var fs = require('fs');
-
+const workspace = process.env.GITHUB_WORKSPACE;
 const date = new Date();
 
 const file = './CHANGELOG.md';
