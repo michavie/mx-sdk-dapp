@@ -32,17 +32,23 @@ jobs:
       # - name: Build project
       #   run: yarn build
 
-      - name: 'Automated Version Bump'
-        uses: 'phips28/gh-action-bump-version@master'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: 'Automated Version Bump'
+      #   uses: 'phips28/gh-action-bump-version@master'
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     minor-wording: 'MINOR'
+      #     major-wording: 'MAJOR'
+      #     patch-wording: 'PATCH'
+      #     rc-wording: 'RC-RELEASE'
+      #     skip-tag: 'true'
+      #     tag-prefix: 'v'
+
+      - name: Update changelog
+        uses: 'thomaseizinger/keep-a-changelog-new-release@v1'
         with:
-          minor-wording: 'MINOR'
-          major-wording: 'MAJOR'
-          patch-wording: 'PATCH'
-          rc-wording: 'RC-RELEASE'
-          skip-tag: 'true'
-          tag-prefix: 'v'
+        tag: v0.6.0 # You probably want to have this dynamic :)
+
 
       # - name: Run tests
       #   run: yarn test
