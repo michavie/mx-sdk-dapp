@@ -110,7 +110,6 @@ const init = async () => {
     // const prUrl = await createPullRequest();
     const prUrl = 'https';
     await incrementNpmversion();
-    await sleep(2000);
     await editChangeLog(prUrl);
     await pushChanges();
     console.log(`PR created: ${prUrl}`);
