@@ -2,7 +2,6 @@ const { spawn } = require('child_process');
 var fs = require('fs');
 const { Octokit } = require('@octokit/rest');
 
-var packageJson = require('./package.json');
 const workspace = process.env.GITHUB_WORKSPACE;
 const date = new Date();
 
@@ -39,6 +38,7 @@ const incrementNpmversion = async () => {
 };
 
 const editChangeLog = async (pullRequestUrl) => {
+  const packageJson = require('./package.json');
   fs.readFile(file, 'utf8', function (err, data) {
     if (err) {
       return console.log(err);
