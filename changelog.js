@@ -72,6 +72,12 @@ const pushChanges = async () => {
   await runInWorkspace('git', ['push']);
 };
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 function runInWorkspace(command, args) {
   return new Promise((resolve, reject) => {
     console.log('runInWorkspace | command:', command, 'args:', args);
@@ -100,8 +106,10 @@ function runInWorkspace(command, args) {
 }
 
 const init = async () => {
-  const prUrl = await createPullRequest();
+  // const prUrl = await createPullRequest();
+  const prUrl = 'https';
   await incrementNpmversion();
+  sleep(2000);
   await editChangeLog(prUrl);
   await pushChanges();
   console.log(`PR created: ${prUrl}`);
