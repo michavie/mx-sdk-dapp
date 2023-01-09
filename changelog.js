@@ -9,7 +9,7 @@ const file = './CHANGELOG.md';
 
 const createPullRequest = async () => {
   const octokit = new Octokit({
-    auth: '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'
+    auth: 'you_gh_token'
   });
 
   try {
@@ -107,8 +107,7 @@ function runInWorkspace(command, args) {
 
 const init = async () => {
   try {
-    // const prUrl = await createPullRequest();
-    const prUrl = 'https';
+    const prUrl = await createPullRequest();
     await incrementNpmversion();
     await editChangeLog(prUrl);
     await pushChanges();
