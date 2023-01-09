@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
   ## [[2.2.7](https)] - 2023-01-09
     
-  te
+  test
 
 ## [[2.2.6](https://github.com/ElrondNetwork/dapp-core/pull/531)] - 2023-01-05
 
