@@ -106,13 +106,17 @@ function runInWorkspace(command, args) {
 }
 
 const init = async () => {
-  // const prUrl = await createPullRequest();
-  const prUrl = 'https';
-  await incrementNpmversion();
-  sleep(2000);
-  await editChangeLog(prUrl);
-  await pushChanges();
-  console.log(`PR created: ${prUrl}`);
+  try {
+    // const prUrl = await createPullRequest();
+    const prUrl = 'https';
+    await incrementNpmversion();
+    sleep(2000);
+    await editChangeLog(prUrl);
+    await pushChanges();
+    console.log(`PR created: ${prUrl}`);
+  } catch (error) {
+    throw error;
+  }
 };
 
 init();
