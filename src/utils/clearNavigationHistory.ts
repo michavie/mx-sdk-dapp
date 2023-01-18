@@ -1,4 +1,6 @@
-export const clearNavigationHistory = (remainingParams: any) => {
+export const clearNavigationHistory = (
+  remainingParams: Record<string, string>
+) => {
   const newUrlParams = new URLSearchParams(remainingParams).toString();
   const { pathname } = window.location;
   const newSearch = newUrlParams ? `?${newUrlParams}` : '';

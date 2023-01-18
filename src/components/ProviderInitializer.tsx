@@ -32,6 +32,7 @@ import {
   setWalletLogin,
   setChainID
 } from 'reduxStore/slices';
+import { WalletLoginQueryParamsEnum } from 'types/dappProvider.types';
 import { LoginMethodsEnum } from 'types/enums.types';
 import {
   getAddress,
@@ -163,7 +164,7 @@ export function ProviderInitializer() {
       const {
         clearNavigationHistory,
         remainingParams: { signature }
-      } = parseNavigationParams(['signature', 'loginToken', 'address']);
+      } = parseNavigationParams(Object.values(WalletLoginQueryParamsEnum));
 
       if (!address) {
         return clearNavigationHistory();

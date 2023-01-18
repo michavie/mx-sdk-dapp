@@ -40,3 +40,9 @@ export interface IDappProvider {
   }): Promise<any>;
   ping?(): Promise<boolean>;
 }
+
+export enum WalletLoginQueryParamsEnum {
+  signature = 'signature',
+  loginToken = 'loginToken',
+  address = 'address'
+}
